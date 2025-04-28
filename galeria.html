@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galería</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Veterinaria con Estilo</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="servicios.html">Servicios</a></li>
+        <li><a href="equipo.html">Equipo</a></li>
+        <li><a href="galeria.html" class="active">Galería</a></li>
+        <li><a href="articulos.html">Artículos</a></li>
+        <li><a href="testimonios.html">Testimonios</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="formulario.html">Formulario</a></li>
+        <li><a href="multimedia.html">Multimedia</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Galería de Imágenes</h2>
+
+    <div class="slider-container">
+      <div class="slider">
+        <img src="imagenes/gato1.jpg" alt="gato bonito" class="slide active">
+        <img src="imagenes/perro2.jpg" alt="perro jugueton" class="slide">
+        <img src="imagenes/conejo3.jpg" alt="conejo tierno" class="slide">
+        <img src="imagenes/loro4.jpg" alt="loro colorido" class="slide">
+        <img src="imagenes/pez5.jpg" alt="pez alegre" class="slide">
+      </div>
+      <button class="prev" onclick="prevSlide()">&#10094;</button>
+      <button class="next" onclick="nextSlide()">&#10095;</button>
+    </div>
+  </main>
+
+  <footer>
+    <p>Veterinaria con Estilo - Todos los derechos reservados 2025</p>
+  </footer>
+
+  <style>
+    .slider-container {
+      position: relative;
+      width: 500px;
+      height: 300px;
+      margin: auto;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .slider {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .prev, .next {
+      position: absolute;
+      top: 50%;
+      background-color: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 50%;
+      transform: translateY(-50%);
+    }
+
+    .prev {
+      left: 10px;
+    }
+
+    .next {
+      right: 10px;
+    }
+
+    .prev:hover, .next:hover {
+      background-color: rgba(0,0,0,0.8);
+    }
+  </style>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll(".slide");
+
+    function showSlide(index) {
+      slides.forEach(slide => slide.classList.remove("active"));
+      slides[index].classList.add("active");
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(currentSlide);
+    }
+
+    // Cambio automático cada 5 segundos
+    setInterval(nextSlide, 5000);
+  </script>
+
+</body>
+</html>
